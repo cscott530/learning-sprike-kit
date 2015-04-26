@@ -17,6 +17,7 @@
 		83E15F091AECB6B700A6AB7B /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 83E15F061AECB6B700A6AB7B /* background-music-aac.caf */; };
 		83E15F0A1AECB6B700A6AB7B /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 83E15F071AECB6B700A6AB7B /* pew-pew-lei.caf */; };
 		83E15F0B1AECB6B700A6AB7B /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 83E15F081AECB6B700A6AB7B /* sprites.atlas */; };
+		83E15F0D1AECBB0300A6AB7B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E15F0C1AECBB0300A6AB7B /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		83E15F061AECB6B700A6AB7B /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		83E15F071AECB6B700A6AB7B /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		83E15F081AECB6B700A6AB7B /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
+		83E15F0C1AECBB0300A6AB7B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E15F0D1AECBB0300A6AB7B /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +70,7 @@
 		83E15ED01AECB29000A6AB7B = {
 			isa = PBXGroup;
 			children = (
+				83E15F0C1AECBB0300A6AB7B /* AVFoundation.framework */,
 				83E15EDB1AECB29000A6AB7B /* LearningSpriteKit */,
 				83E15EF51AECB29000A6AB7B /* LearningSpriteKitTests */,
 				83E15EDA1AECB29000A6AB7B /* Products */,

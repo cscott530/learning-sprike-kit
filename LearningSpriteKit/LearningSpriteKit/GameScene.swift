@@ -7,6 +7,30 @@
 //
 
 import SpriteKit
+import AVFoundation
+
+var backgroundMusicPlayer: AVAudioPlayer!
+
+func playBackgroundMusic(filename: String) {
+    let url = NSBundle.mainBundle().URLForResource(
+        filename, withExtension: nil)
+    if (url == nil) {
+        println("Could not find file: \(filename)")
+        return
+    }
+    
+    var error: NSError? = nil
+    backgroundMusicPlayer =
+        AVAudioPlayer(contentsOfURL: url, error: &error)
+    if backgroundMusicPlayer == nil {
+        println("Could not create audio player: \(error!)")
+        return
+    }
+    
+    backgroundMusicPlayer.numberOfLoops = -1
+    backgroundMusicPlayer.prepareToPlay()
+    backgroundMusicPlayer.play()
+}
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
@@ -50,6 +74,8 @@ struct PhysicsCategory {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let player = SKSpriteNode(imageNamed: "player")
     override func didMoveToView(view: SKView) {
+        playBackgroundMusic("background-music-aac.caf")
+        
         backgroundColor = SKColor.whiteColor()
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         addChild(player)
@@ -88,6 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // 5 - OK to add now - you've double checked position
         addChild(projectile)
+        runAction(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
         
         // 6 - Get the direction of where to shoot
         let direction = offset.normalized()
