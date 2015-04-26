@@ -9,9 +9,14 @@
 import SpriteKit
 import AVFoundation
 
+var PLAY_SOUND = false
+
 var backgroundMusicPlayer: AVAudioPlayer!
 
 func playBackgroundMusic(filename: String) {
+    if (!PLAY_SOUND) {
+        return
+    }
     let url = NSBundle.mainBundle().URLForResource(
         filename, withExtension: nil)
     if (url == nil) {
@@ -114,7 +119,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // 5 - OK to add now - you've double checked position
         addChild(projectile)
-        runAction(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
+        if (PLAY_SOUND) {
+            runAction(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
+        }
         
         // 6 - Get the direction of where to shoot
         let direction = offset.normalized()
