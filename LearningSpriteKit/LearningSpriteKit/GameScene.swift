@@ -77,6 +77,8 @@ struct PhysicsCategory {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    var monstersDestroyed = 0
+    var VICTORY_THRESHOLD = 10
     let player = SKSpriteNode(imageNamed: "player")
     override func didMoveToView(view: SKView) {
         playBackgroundMusic("background-music-aac.caf")
@@ -173,8 +175,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Create the actions
         let actionMove = SKAction.moveTo(CGPoint(x: -monster.size.width/2, y: actualY), duration: NSTimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
-        monster.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
+        let loseAction = SKAction.runBlock() {
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            let gameOverScene = GameOverScene(size: self.size, won: false)
+            self.view?.presentScene(gameOverScene, transition: reveal)
+        }
+        monster.runAction(SKAction.sequence([actionMove, loseAction, actionMoveDone]))
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -201,5 +208,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         println("Hit")
         projectile.removeFromParent()
         monster.removeFromParent()
+        monstersDestroyed++
+        if (monstersDestroyed > VICTORY_THRESHOLD) {
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            let gameOverScene = GameOverScene(size: self.size, won: true)
+            self.view?.presentScene(gameOverScene, transition: reveal)
+        }
     }
 }
